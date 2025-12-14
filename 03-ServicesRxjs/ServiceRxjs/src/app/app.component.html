@@ -1,0 +1,11 @@
+<app-ngzone-test />
+<div *ngIf="userService.isLoading">Loading...</div>
+<div *ngIf="!userService.isLoading">
+  <app-user-list [users]="userService.users" />
+</div>
+
+<div>
+  <input type="text" #name>
+  <input type="email" #email>
+  <button (click)="addUser(name, email)">Add User</button>
+</div>

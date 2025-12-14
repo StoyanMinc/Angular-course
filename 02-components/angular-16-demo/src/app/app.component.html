@@ -1,0 +1,7 @@
+<h3>Hello, my first angular app!</h3>
+<input type="text" #input>
+<button (click)="changeColor(input.value)">Change Color</button>
+
+<hr />
+
+<app-test-component [color]="color" (dataTaken)="onDataTaken($event)"></app-test-component>
