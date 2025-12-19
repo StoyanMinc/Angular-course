@@ -1,0 +1,36 @@
+<h3 appHighlight>Hello World</h3>
+<hr>
+<div>
+    <a appMyRoutingLickDeractive="/register">Register</a>
+</div>
+<div>
+    <a appMyRoutingLickDeractive="/login">Login</a>
+</div>
+
+<hr>
+
+<h3>My structure directive</h3>
+<button (click)="toggle()">Hide it</button>
+<!-- usage 1 -->
+<div *appMyStructureDirective="isHidden">Show My structure directive 1</div>
+
+<!-- usage 2 -->
+<ng-template [appMyStructureDirective]="isHidden"
+let-testValue='testValue'
+let-testValue2='testValue2'
+#directiveRef="appMyStructureDirective"
+>
+    <div>Show My structure directive 2</div>
+    <div>{{testValue}}</div>
+    <div>{{testValue2}}</div>
+</ng-template>
+
+<button (click)="showDirectiveReference(directiveRef)">Show directive reference</button>
+
+<!-- usage 3 -->
+
+<ng-template #tmp>
+    <div>Show My structure directive 3</div>
+</ng-template>
+
+<ng-container [appMyStructureDirective]="isHidden" [myTempRf]="tmp"/>

@@ -1,0 +1,23 @@
+<div routerLink="/home">Go to home</div>
+<h1>Login</h1>
+
+<!-- template driven forms -->
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" ngModel required email #inputEmail="ngModel">
+        <div *ngIf="inputEmail.errors?.['required'] && inputEmail.touched" class="invalid-input-error">Email is required
+        </div>
+        <div *ngIf="inputEmail.errors?.['email'] && inputEmail.touched" class="invalid-input-error">Email is not valid
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel required #inputPassword="ngModel"
+            appMaxCountValidator [appMaxCount]="3">
+        <div *ngIf="inputPassword.errors?.['appMaxCount'] && inputPassword.touched" class="invalid-input-error">Password must be less than 3 characters</div>
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+{{loginForm.value | json}}
