@@ -1,0 +1,36 @@
+<h1>Pipes</h1>
+
+<p>{{ title | uppercase }}</p>
+
+<p>{{ user.name }}</p>
+
+<p>Reduced user list: {{ user.list | reduce : sum : 0 }}</p>
+
+<p>Date and time: {{ time$ | async | date : "dd/MM/yyyy HH:mm:ss" }}</p>
+
+<p>{{ p | async }}</p>
+
+<button (click)="addProp()">Add Prop</button>
+
+<hr />
+
+<a routerLink="/lazy">Lazy</a>
+<a routerLink="/">Home</a>
+
+<router-outlet></router-outlet>
+
+<hr />
+
+<h2>Users</h2>
+
+<button (click)="loadUsers()">Load Users</button>
+
+<!-- {{ users$ | json }} -->
+
+<ng-container *ngIf="users$ | async as users">
+  <div *ngFor="let user of users">
+    <p>
+      {{ user.name }}
+    </p>
+  </div>
+</ng-container>
