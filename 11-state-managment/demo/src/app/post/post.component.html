@@ -1,0 +1,15 @@
+<p>post works!</p>
+
+<div *ngIf="post$ | async as post">
+    <p>{{post.text}}</p>
+    <p>{{post.likes}}</p>
+</div>
+<div>
+    <button (click)="like()">like</button>
+    <button (click)="dislike()">dislike</button>
+    <button (click)="reset()">reset</button>
+</div>
+<div>
+    <input type="text" [(ngModel)]="msg" />
+    <button (click)="edit()">Edit</button>
+</div>
