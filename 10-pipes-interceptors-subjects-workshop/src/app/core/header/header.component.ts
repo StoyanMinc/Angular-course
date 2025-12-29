@@ -10,13 +10,6 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
     constructor(public userService: UserService, private router: Router) { }
-    get isLoggedIn() {
-        return this.userService.isLoggedIn;
-    }
-    get user() {
-        return this.userService.user;
-    }
-
     logout() {
         this.userService.logout().subscribe({
             next: () => {

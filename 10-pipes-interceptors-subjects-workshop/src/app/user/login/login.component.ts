@@ -15,10 +15,6 @@ export class LoginComponent {
 
     constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
-    get isLoggedIn() {
-        return this.userService.isLoggedIn;
-    }
-
     login(form: NgForm) {
         if (form.invalid) {
             return;

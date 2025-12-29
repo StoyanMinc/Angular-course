@@ -7,9 +7,5 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./welcome-message.component.css']
 })
 export class WelcomeMessageComponent {
-  constructor(private userService: UserService) { }
-
-  get isLoggedIn() {
-    return this.userService.isLoggedIn;
-  }
+  constructor(public userService: UserService) { }
 }

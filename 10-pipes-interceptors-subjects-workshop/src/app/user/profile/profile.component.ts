@@ -23,10 +23,6 @@ export class ProfileComponent {
     });
     constructor(public userService: UserService, private fb: FormBuilder    ) { }
 
-    ngOnInit() {
-        this.user = this.userService.user;
-    }
-
     toggleEditMode() {
         this.isEditMode = !this.isEditMode;
     }
@@ -35,10 +31,6 @@ export class ProfileComponent {
         if (this.form.invalid) {
             return;
         }
-        console.log(this.form.value);
-        // this.user = { ...this.form.value } as User;
-        // this.userService.user = { ...this.form.value } as User;
-        // console.log(this.form.value);
         this.userService.updateProfile(
             this.form.value.username!,
             this.form.value.email!,

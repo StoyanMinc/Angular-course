@@ -12,7 +12,7 @@ export class AuthenticateComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    // setTimeout(() => {
+    setTimeout(() => {
       this.userService.getProfile().subscribe({
         next: () => {
           this.isAuthenticating = false;
@@ -25,6 +25,6 @@ export class AuthenticateComponent implements OnInit {
           this.isAuthenticating = false;
         }
       });
-    // }, 1000)
+    }, 1000)
   }
 }

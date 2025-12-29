@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Theme } from 'src/types/theme';
 import { UserService } from 'src/app/user/user.service';
+import { map } from 'rxjs';
 
 @Component({
     selector: 'app-theme-list',
@@ -13,11 +14,8 @@ export class ThemeListComponent implements OnInit {
 
     themes: Theme[] = [];
     isLoading: boolean = true;
-    constructor(private apiService: ApiService, private userService: UserService) { }
+    constructor(private apiService: ApiService, public userService: UserService) { }
 
-    get isLoggedIn() {
-        return this.userService.isLoggedIn;
-    }
 
     ngOnInit() {
         this.apiService.getThemes().subscribe({
@@ -33,6 +31,8 @@ export class ThemeListComponent implements OnInit {
     }
 
     checkIsSubscribed(theme: Theme) {
-        return theme.subscribers.includes(this.userService.user?._id || '');
+        return this.userService.user$.pipe(
+            map((user) => theme.subscribers.includes(user?._id || ''))
+        );
     }
 }

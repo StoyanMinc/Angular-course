@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { UserService } from 'src/app/user/user.service';
 import { Theme } from 'src/types/theme';
@@ -31,6 +32,9 @@ export class ThemeDetailsComponent {
     }
 
     checkIsSubscribed() {
-        return this.theme.subscribers.includes(this.userService.user?._id || '');
+        // return this.theme.subscribers.includes(this.userService.user$$.value?._id || '');
+        return this.userService.user$.pipe(
+            map((user) => this.theme.subscribers.includes(user?._id || ''))
+        );
     }
 }

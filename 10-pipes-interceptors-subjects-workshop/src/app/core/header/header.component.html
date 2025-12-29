@@ -4,7 +4,7 @@
             <p class="logo"><span class="logo">SoftUni Forum</span></p>
         </div>
         <div class="mini-navbar">
-            <ul *ngIf="!isLoggedIn">
+            <ul *ngIf="!(userService.isLoggedIn$ | async)">
                 <li>
                     <a routerLink="/auth/login">Login</a>
                 </li>
@@ -12,9 +12,9 @@
                     <a routerLink="/auth/register">Register</a>
                 </li>
             </ul>
-            <ul *ngIf="isLoggedIn">
+            <ul *ngIf="userService.user$ | async as user">
                 <li>
-                    <a routerLink="/auth/profile">{{user?.username}}'s Profile</a>
+                    <a routerLink="/auth/profile">{{user.username}}'s Profile</a>
                 </li>
                 <li>
                     <a (click)="logout()">Logout</a>
